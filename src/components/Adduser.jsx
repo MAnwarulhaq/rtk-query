@@ -3,42 +3,85 @@ import { useAddUserMutation } from '../service/api'
 import { useNavigate } from 'react-router-dom'
 
 const Adduser = () => {
-    const [user ,setUser] = useState({})
-    const navigate = useNavigate()
+  const [user, setUser] = useState({})
+  const navigate = useNavigate()
+  const [addUser] = useAddUserMutation()
 
-    function  chandeHandle(e) {
-    
-        setUser({...user,[e.target.name]: e.target.value})
-    }
-    const [addUser] = useAddUserMutation()
-    function hanldeSubmit (e){
-        e.preventDefault()
-        addUser(user)
-        navigate('/')
+  function changeHandle(e) {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
 
-        alert("user add successfully!")
-        // console.log( "user",user)
-    }
-    
+  function handleSubmit(e) {
+    e.preventDefault()
+    addUser(user)
+    alert("User added successfully!")
+    navigate('/')
+  }
 
-    
   return (
-    <form className='flex flex-col justify-center  items-center text-left space-y-4' onSubmit={hanldeSubmit}>
-        
-        <label htmlFor="name">First Name</label>
-        <input type="text" name="name" id="name"  className='border p-3' onChange={chandeHandle} required/>
-         <label htmlFor="lastname">Last Name</label>
-        <input type="text" name="lastname" id="lastanme" className='border p-3'  onChange={chandeHandle} required/>
-         <label htmlFor="age">Age</label>
-        <input type="number" name="age" id="age" className='border p-3'  onChange={chandeHandle} required/>
-         <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="emil"  className='border p-3'  onChange={chandeHandle} required/>
+    <div className="flex justify-center mt-10">
+      <form 
+        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md flex flex-col space-y-5"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-2xl font-bold text-center mb-4 text-gray-700">Add User</h1>
 
-        {/* <input type="submit" name="Sumbit" id="s" className='border p-3' /> */}
-        <button>Submit</button>
-        
+        <div className="flex flex-col">
+          <label htmlFor="name" className="mb-1 font-medium text-gray-600">First Name</label>
+          <input 
+            type="text" 
+            name="name" 
+            id="name" 
+            onChange={changeHandle}
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
 
-    </form>
+        <div className="flex flex-col">
+          <label htmlFor="lastname" className="mb-1 font-medium text-gray-600">Last Name</label>
+          <input 
+            type="text" 
+            name="lastname" 
+            id="lastname" 
+            onChange={changeHandle}
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="age" className="mb-1 font-medium text-gray-600">Age</label>
+          <input 
+            type="number" 
+            name="age" 
+            id="age" 
+            onChange={changeHandle}
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="email" className="mb-1 font-medium text-gray-600">Email</label>
+          <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            onChange={changeHandle}
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <button 
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition duration-200"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   )
 }
 

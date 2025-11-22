@@ -1,62 +1,114 @@
 import React, { useEffect, useState } from 'react'
-import { useGetUserQuery,useUpdateUserMutation} from '../service/api'
-import { useNavigate } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
+import { useGetUserQuery, useUpdateUserMutation } from '../service/api'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Edituser = () => {
-    const {id} = useParams()
-    
-    const [user ,setUser] = useState({
-        id,
-        name:"",
-        lastname:"",
-        age:"",
-        email:""
-    })
-    const navigate = useNavigate()
+  const { id } = useParams()
+  const navigate = useNavigate()
 
-    function  chandeHandle(e) {
-    
-        setUser({...user,[e.target.name]: e.target.value})
+  const [user, setUser] = useState({
+    id,
+    name: "",
+    lastname: "",
+    age: "",
+    email: ""
+  })
+
+  const { data } = useGetUserQuery(id)
+  const [updateUser] = useUpdateUserMutation()
+
+  useEffect(() => {
+    if (data) {
+      setUser({
+        id: data.id,
+        name: data.name,
+        lastname: data.lastname,
+        age: data.age,
+        email: data.email
+      })
     }
-    const {data} = useGetUserQuery(id)
-    const [updateUser] = useUpdateUserMutation()
+  }, [data])
 
-    useEffect(()=>{
-        if(data){
-            setUser({...user,name:data.name, lastname: data.lastname, age:data.age ,email: data.email ,id: data.id})
-        }
-    },[data])
-    // setUser(data)
-    // console.log(data)
-    function hanldeSubmit (e){
-        e.preventDefault()
-        updateUser(user)
-        navigate('/')
+  function changeHandle(e) {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
 
-        alert("user Update  successfully!")
-        // console.log( "user",user)
-    }
-    
-    // console.log(user)
+  function handleSubmit(e) {
+    e.preventDefault()
+    updateUser(user)
+    alert("User updated successfully!")
+    navigate('/')
+  }
 
-    
   return (
-    <form className='flex flex-col justify-center  items-center text-left space-y-4' onSubmit={hanldeSubmit}>
-        <h1>Update Users</h1>
-        <label htmlFor="name">First Name</label>
-        <input type="text" name="name" id="name" value={user.name}  className='border p-3' onChange={chandeHandle} required/>
-         <label htmlFor="lastname">Last Name</label>
-        <input type="text" name="lastname" id="lastanme" value={user.lastname} className='border p-3'  onChange={chandeHandle} required/>
-         <label htmlFor="age">Age</label>
-        <input type="number" name="age" id="age" value={user.age} className='border p-3'  onChange={chandeHandle} required/>
-         <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="emil" value={user.email} className='border p-3'  onChange={chandeHandle} required/>
+    <div className="flex justify-center mt-10">
+      <form 
+        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md flex flex-col space-y-5"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-2xl font-bold text-center mb-4 text-gray-700">Update User</h1>
 
-        <button>Update</button>
-        
+        <div className="flex flex-col">
+          <label htmlFor="name" className="mb-1 font-medium text-gray-600">First Name</label>
+          <input 
+            type="text" 
+            name="name" 
+            id="name" 
+            value={user.name} 
+            onChange={changeHandle} 
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
 
-    </form>
+        <div className="flex flex-col">
+          <label htmlFor="lastname" className="mb-1 font-medium text-gray-600">Last Name</label>
+          <input 
+            type="text" 
+            name="lastname" 
+            id="lastname" 
+            value={user.lastname} 
+            onChange={changeHandle} 
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="age" className="mb-1 font-medium text-gray-600">Age</label>
+          <input 
+            type="number" 
+            name="age" 
+            id="age" 
+            value={user.age} 
+            onChange={changeHandle} 
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="email" className="mb-1 font-medium text-gray-600">Email</label>
+          <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            value={user.email} 
+            onChange={changeHandle} 
+            required
+            className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <button 
+          type="submit"
+          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-md transition duration-200"
+        >
+          Update
+        </button>
+
+      </form>
+    </div>
   )
 }
 
