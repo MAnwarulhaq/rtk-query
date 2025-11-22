@@ -6,12 +6,13 @@ import Edituser from './components/Edituser'
 import './App.css'
 import { BrowserRouter,Routes,Router, Route } from 'react-router-dom'
 import Adduser from './components/Adduser'
-
+import Navabr from './components/Navabr.jsx'
 function App() {
 
   return (
     <>
     <BrowserRouter >
+    <Navabr/>
     <Routes>
       <Route path='/' element={<User/>}/>
       <Route path='/adduser' element={<Adduser/>}/>

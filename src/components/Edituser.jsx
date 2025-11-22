@@ -43,7 +43,7 @@ const Edituser = () => {
     
   return (
     <form className='flex flex-col justify-center  items-center text-left space-y-4' onSubmit={hanldeSubmit}>
-        <h1>Add User</h1>
+        <h1>Update Users</h1>
         <label htmlFor="name">First Name</label>
         <input type="text" name="name" id="name" value={user.name}  className='border p-3' onChange={chandeHandle} required/>
          <label htmlFor="lastname">Last Name</label>
