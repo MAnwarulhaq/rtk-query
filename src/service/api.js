@@ -6,6 +6,10 @@ export  const userAPi = createApi({
     endpoints:(build)=>({
         getUser: build.query({
             query: ()=> '/users'
+        }),
+        addUser: build.mutation({
+            
+
         })
     }),
    

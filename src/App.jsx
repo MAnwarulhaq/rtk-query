@@ -2,13 +2,23 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import User from './User'
+import Edituser from './components/Edituser'
 import './App.css'
+import { BrowserRouter,Routes,Router, Route } from 'react-router-dom'
+import Adduser from './components/Adduser'
 
 function App() {
 
   return (
     <>
-     <User/>
+    <BrowserRouter >
+    <Routes>
+      <Route path='/' element={<User/>}/>
+      <Route path='/adduser' element={<Adduser/>}/>
+      <Route path='/edit' element={<Edituser/>}/>
+    </Routes>
+     
+     </BrowserRouter>
 
     </>
   )

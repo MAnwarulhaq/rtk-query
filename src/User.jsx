@@ -1,5 +1,6 @@
 import React from 'react'
 import { useGetUserQuery } from './service/api'
+import { Link } from 'react-router-dom'
 const User = () => {
 
     const { data: users, isLoading, isError, isSuccess, error } = useGetUserQuery()
@@ -30,7 +31,12 @@ const User = () => {
                                 <td className="border px-4 py-2">{user.lastname}</td>
                                 <td className="border px-4 py-2">{user.age}</td>
                                 <td className="border px-4 py-2">{user.email}</td>
-                                <td className="border px-4 py-2 gap-2"><button className='bg-green-600 text-white w-20 cursor-pointer'>Edit</button> <button className='bg-red-600 text-white w-20 cursor-pointer'>Delete</button></td>
+                                <td className="border px-4 py-2 space-x-4">
+                                   <Link to='/edit'> 
+                                   <button className='bg-green-600 text-white w-20 cursor-pointer'>Edit</button>
+                                   </Link>
+                                    <button className='bg-red-600 text-white w-20 cursor-pointer'>Delete</button>
+                                </td>
 
                             </tr>
                         ))}
