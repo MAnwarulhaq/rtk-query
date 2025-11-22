@@ -4,12 +4,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-     <h1>Redux ToolKit Query</h1>
-     
+     <h1 className='text-center text-3xl font-extrabold text-indigo-600'>Redux ToolKit Query</h1>
+
     </>
   )
 }
