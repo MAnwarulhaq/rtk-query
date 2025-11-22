@@ -1,10 +1,10 @@
 import React from 'react'
-import { useGetUserQuery } from '../service/api'
+import { useGetUsersQuery } from '../service/api'
 import { Link } from 'react-router-dom'
 
 const User = () => {
 
-    const { data: users, isLoading, isError, isSuccess, error } = useGetUserQuery()
+    const { data: users, isLoading, isError, isSuccess, error } = useGetUsersQuery()
     // console.log(users)
 
     return (

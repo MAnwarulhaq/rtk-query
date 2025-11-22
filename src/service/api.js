@@ -1,23 +1,26 @@
-import { createApi,fetchBaseQuery } from "@reduxjs/toolkit/query/react";
- 
-export  const userAPi = createApi({
-    reducerPath:"usersAPi",
-    baseQuery: fetchBaseQuery( {baseUrl: "http://localhost:3000"}),
-    endpoints:(build)=>({
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const userAPi = createApi({
+    reducerPath: "usersAPi",
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+    endpoints: (build) => ({
+        getUsers: build.query({
+            query: () => '/users'
+        }),
         getUser: build.query({
-            query: ()=> '/users'
+            query: (id) => `/users/${id}`
         }),
         addUser: build.mutation({
-            query: (user)=>({
+            query: (user) => ({
                 url: '/users',
-                method:"POST",
+                method: "POST",
                 body: user
             })
 
         })
     }),
-   
+
 })
 
 
-export const {useGetUserQuery,useAddUserMutation} = userAPi
+export const { useGetUsersQuery,useGetUserQuery, useAddUserMutation } = userAPi
