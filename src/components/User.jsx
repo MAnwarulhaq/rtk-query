@@ -1,10 +1,17 @@
-import React from 'react'
-import { useGetUsersQuery } from '../service/api'
+import React, { useEffect } from 'react'
+import { useGetUsersQuery,useDelteUserMutation } from '../service/api'
 import { Link } from 'react-router-dom'
 
 const User = () => {
 
     const { data: users, isLoading, isError, isSuccess, error } = useGetUsersQuery()
+
+    const [deletUser] = useDelteUserMutation()
+    
+
+    useEffect(()=>{
+        users
+    },[users])
     // console.log(users)
 
     return (
@@ -36,7 +43,7 @@ const User = () => {
                                     <Link to={`/edit/${user.id}`}>
                                         <button className='bg-green-600 text-white w-20 cursor-pointer'>Edit</button>
                                     </Link>
-                                    <button className='bg-red-600 text-white w-20 cursor-pointer'>Delete</button>
+                                    <button className='bg-red-600 text-white w-20 cursor-pointer' onClick={()=>deletUser(user.id)}>Delete</button>
                                 </td>
 
                             </tr>

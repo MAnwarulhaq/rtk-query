@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useGetUserQuery} from '../service/api'
+import { useGetUserQuery,useUpdateUserMutation} from '../service/api'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 
 const Edituser = () => {
     const {id} = useParams()
-    console.log
+    
     const [user ,setUser] = useState({
         id,
         name:"",
@@ -20,6 +20,7 @@ const Edituser = () => {
         setUser({...user,[e.target.name]: e.target.value})
     }
     const {data} = useGetUserQuery(id)
+    const [updateUser] = useUpdateUserMutation()
 
     useEffect(()=>{
         if(data){
@@ -27,17 +28,17 @@ const Edituser = () => {
         }
     },[data])
     // setUser(data)
-    console.log(data)
+    // console.log(data)
     function hanldeSubmit (e){
         e.preventDefault()
-        addUser(user)
+        updateUser(user)
         navigate('/')
 
-        alert("user add successfully!")
+        alert("user Update  successfully!")
         // console.log( "user",user)
     }
     
-    console.log(user)
+    // console.log(user)
 
     
   return (
