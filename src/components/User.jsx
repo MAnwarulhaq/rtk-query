@@ -1,13 +1,14 @@
 import React from 'react'
-import { useGetUserQuery } from './service/api'
+import { useGetUserQuery } from '../service/api'
 import { Link } from 'react-router-dom'
+
 const User = () => {
 
     const { data: users, isLoading, isError, isSuccess, error } = useGetUserQuery()
-    console.log(users)
+    // console.log(users)
 
     return (
-        <div>
+        <div className='my-10'>
             {isLoading && <h1>...loading</h1>}
             {isError && <h1>something wnet wrong</h1>}
             {
@@ -32,9 +33,9 @@ const User = () => {
                                 <td className="border px-4 py-2">{user.age}</td>
                                 <td className="border px-4 py-2">{user.email}</td>
                                 <td className="border px-4 py-2 space-x-4">
-                                   <Link to='/edit'> 
-                                   <button className='bg-green-600 text-white w-20 cursor-pointer'>Edit</button>
-                                   </Link>
+                                    <Link to={`/edit/${user.id}`}>
+                                        <button className='bg-green-600 text-white w-20 cursor-pointer'>Edit</button>
+                                    </Link>
                                     <button className='bg-red-600 text-white w-20 cursor-pointer'>Delete</button>
                                 </td>
 
