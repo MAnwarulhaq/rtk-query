@@ -27,12 +27,12 @@ const User = () => {
 
             <tbody>
               {users.map((user) => (
-                <tr key={user.id} className="hover:bg-gray-100">
+                <tr key={user.id} className="hover:bg-gray-100 border">
                   <td className="border px-4 py-2">{user.name}</td>
-                  <td className="border px-4 py-2">{user.lastname}</td>
+                  <td className=" px-4 py-2">{user.lastname}</td>
                   <td className="border px-4 py-2">{user.age}</td>
                   <td className="border px-4 py-2">{user.email}</td>
-                  <td className="border px-4 py-2 space-x-2 flex flex-wrap">
+                  <td className=" px-4 py-2 space-x-2 flex flex-wrap gap-2">
                     <Link to={`/edit/${user.id}`}>
                       <button className='bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded-md transition duration-200'>Edit</button>
                     </Link>
