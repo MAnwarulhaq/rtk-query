@@ -40,7 +40,7 @@ const User = () => {
                       className='bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-md transition duration-200' 
                       onClick={() => deleteUser(user.id)}
                     >
-                      DELETE
+                      Delete
                     </button>
                   </td>
                 </tr>
