@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow-md">
 
       <Link to="/" className="text-2xl font-bold hover:text-gray-200 duration-200">
-        RTK Query
+        Redux Toolkit Query
       </Link>
 
       <ul className="flex space-x-6 text-lg">
