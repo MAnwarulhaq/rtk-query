@@ -19,9 +19,9 @@ const Adduser = () => {
   }
 
   return (
-    <div className="flex justify-center mt-10">
+    <div className="flex justify-center mt-10 bg-gray-50">
       <form 
-        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md flex flex-col space-y-5"
+        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md flex flex-col space-y-5 my-10"
         onSubmit={handleSubmit}
       >
         <h1 className="text-2xl font-bold text-center mb-4 text-gray-700">Add User</h1>
