@@ -1,11 +1,24 @@
 import React from 'react'
 import { useGetUsersQuery, useDelteUserMutation } from '../service/api'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const User = () => {
+  const [search, setSearch] = useState("")
 
   const { data: users, isLoading, isError, isSuccess } = useGetUsersQuery()
   const [deleteUser] = useDelteUserMutation()
+
+  // const filteruser = users?.filter(user=>
+  //   user.name.toLowerCase().includes(search.toLowerCase())
+  //   
+  // ) || []
+  const filteredUsers = users?.filter(user =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  ) || [];
+
+
+  console.log(filteredUsers)
 
   return (
     <div className='my-10 px-4'>
@@ -26,7 +39,7 @@ const User = () => {
             </thead>
 
             <tbody>
-              {users.map((user) => (
+              {[...users].reverse().map((user) => (
                 <tr key={user.id} className="hover:bg-gray-100 border">
                   <td className="border px-4 py-2">{user.name}</td>
                   <td className=" px-4 py-2">{user.lastname}</td>
@@ -36,8 +49,8 @@ const User = () => {
                     <Link to={`/edit/${user.id}`}>
                       <button className='bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded-md transition duration-200'>Edit</button>
                     </Link>
-                    <button 
-                      className='bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-md transition duration-200' 
+                    <button
+                      className='bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-md transition duration-200'
                       onClick={() => deleteUser(user.id)}
                     >
                       Delete
