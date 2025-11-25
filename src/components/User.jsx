@@ -18,7 +18,7 @@ const User = () => {
   ) || [];
 
 
-  console.log(filteredUsers)
+  // console.log(filteredUsers)
 
   return (
     <div className='my-10 px-4'>
