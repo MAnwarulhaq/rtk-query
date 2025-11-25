@@ -104,7 +104,7 @@ const Edituser = () => {
           type="submit"
           className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-md transition duration-200"
         >
-          Update
+          Updte
         </button>
 
       </form>
