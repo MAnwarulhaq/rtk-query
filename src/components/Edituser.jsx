@@ -62,7 +62,7 @@ const Edituser = () => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="lastname" className="mb-1 font-medium text-gray-600">Lst Name</label>
+          <label htmlFor="lastname" className="mb-1 font-medium text-gray-600">Last Name</label>
           <input 
             type="text" 
             name="lastname" 
