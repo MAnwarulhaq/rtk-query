@@ -1,12 +1,17 @@
 import React from 'react'
-import { useGetUsersQuery, useDelteUserMutation } from '../service/api'
+import { useGetUsersQuery, useDelteUserMutation } from '../service/users'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useGetProductsQuery } from '../service/products'
 
 const User = () => {
   const [search, setSearch] = useState("")
 
   const { data: users, isLoading, isError, isSuccess } = useGetUsersQuery()
+  const { data: products } = useGetProductsQuery()
+
+  console.log("products", products)
+
   const [deleteUser] = useDelteUserMutation()
 
   // const filteruser = users?.filter(user=>
@@ -22,7 +27,7 @@ const User = () => {
 
   return (
     <div className='my-10 px-4'>
-      <input type="text" name="" id="" onChange={(e)=>setSearch(e.target.value)} className='border w-[40%] h-12 p-3 ' placeholder='User search by name'/>
+      <input type="text" name="" id="" onChange={(e)=>setSearch(e.target.value)} className='border w-full md:w-[40%] h-12 p-3 ' placeholder='User search by name'/>
       {isLoading && <h1 className="text-center text-lg font-medium">...Loading</h1>}
       {isError && <h1 className="text-center text-lg font-medium text-red-600">Something went wrong</h1>}
 

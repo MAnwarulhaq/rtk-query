@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useAddUserMutation } from '../service/api'
+import { useAddUserMutation } from '../service/users'
 import { useNavigate } from 'react-router-dom'
 
 const Adduser = () => {

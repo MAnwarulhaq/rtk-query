@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useGetUserQuery, useUpdateUserMutation } from '../service/api'
+import { useGetUserQuery, useUpdateUserMutation } from '../service/users'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const Edituser = () => {
