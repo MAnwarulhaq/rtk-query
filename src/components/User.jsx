@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useGetUsersQuery, useDelteUserMutation } from '../service/users'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
@@ -7,8 +7,23 @@ import { useGetProductsQuery } from '../service/products'
 const User = () => {
   const [search, setSearch] = useState("")
 
+  const [usersData,setUsersData] = useState([])
+
+
+  const [usersPerPage,setUsersPerPage] = useState(5)
+  const [startIndex,setStartIndex] = useState(1)
+
   const { data: users, isLoading, isError, isSuccess } = useGetUsersQuery()
   const { data: products } = useGetProductsQuery()
+
+   useEffect(()=>{
+    setUsersData(users)
+  },[])
+
+  const lastUserIndex = startIndex * usersPerPage
+  const firstUserIndex = lastUserIndex - usersPerPage
+
+  const visibleUsers= usersData.slice(firstUserIndex,lastUserIndex)
 
   console.log("products", products)
 
@@ -21,6 +36,8 @@ const User = () => {
   const filteredUsers = users?.filter(user =>
     user.name.toLowerCase().includes(search.toLowerCase())
   ) || [];
+
+ 
 
 
   // console.log(filteredUsers)
@@ -64,7 +81,7 @@ const User = () => {
                   </td>
                 </tr>
               ))} */}
-              {[...filteredUsers].reverse().map((user) => (
+              {[...visibleUsers].reverse().map((user) => (
                 <tr key={user.id} className="hover:bg-gray-100 border">
                   <td className="border px-4 py-2">{user.name}</td>
                   <td className=" px-4 py-2">{user.lastname}</td>
