@@ -17,16 +17,16 @@ const User = () => {
   const { data: users, isLoading, isError, isSuccess } = useGetUsersQuery()
   const { data: products } = useGetProductsQuery()
 
-   useEffect(()=>{
-    setUsersData(users)
-  },[])
+  useEffect(() => {
+  if(users) setUsersData(users);
+}, [users]);
 
   const lastUserIndex = startIndex * usersPerPage
   const firstUserIndex = lastUserIndex - usersPerPage
 
-  const visibleUsers= usersData.slice(firstUserIndex,lastUserIndex)
+  const visibleUsers=  usersData?.slice(firstUserIndex,lastUserIndex)
 
-  console.log("products", products)
+  // console.log("products", products)
 
   const [deleteUser] = useDelteUserMutation()
 
