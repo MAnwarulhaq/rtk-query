@@ -34,9 +34,14 @@ const User = () => {
   //   user.name.toLowerCase().includes(search.toLowerCase())
   //   
   // ) || []
-  const filteredUsers = users?.filter(user =>
+  // const filteredUsers = users?.filter(user =>
+  //   user.name.toLowerCase().includes(search.toLowerCase())
+  // ) || [];
+
+    const filteredUsers = visibleUsers?.filter(user =>
     user.name.toLowerCase().includes(search.toLowerCase())
   ) || [];
+
 
  
 
@@ -82,7 +87,7 @@ const User = () => {
                   </td>
                 </tr>
               ))} */}
-              {[...visibleUsers].reverse().map((user) => (
+              {[...filteredUsers].reverse().map((user) => (
                 <tr key={user.id} className="hover:bg-gray-100 border">
                   <td className="border px-4 py-2">{user.name}</td>
                   <td className=" px-4 py-2">{user.lastname}</td>
