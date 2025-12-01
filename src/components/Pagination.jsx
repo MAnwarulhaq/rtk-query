@@ -15,7 +15,7 @@ const Pagination = ({usersperPage,totalUsers,setStartIndex}) => {
   return (
     <div className='flex justify-center items-center gap-5 my-10'>
         {pages.map((page,index)=>{
-            return <button key={index} onClick={()=>setStartIndex(page)}>{page}</button>
+            return <button key={index} onClick={()=>setStartIndex(page)} className='size-8 border'>{page}</button>
         })}
     </div>
   )

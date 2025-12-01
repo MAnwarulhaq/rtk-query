@@ -110,7 +110,7 @@ const User = () => {
           </table>
         </div>
       }
-      <Pagination usersperPage={usersPerPage} totalUsers={usersData} setStartIndex={setStartIndex}/>
+      <Pagination usersperPage={usersPerPage} totalUsers={usersData} setStartIndex={setStartIndex} startIndex={startIndex}/>
     </div>
   )
 }
