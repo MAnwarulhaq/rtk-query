@@ -3,6 +3,7 @@ import { useGetUsersQuery, useDelteUserMutation } from '../service/users'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useGetProductsQuery } from '../service/products'
+import Pagination from './Pagination'
 
 const User = () => {
   const [search, setSearch] = useState("")
@@ -104,6 +105,7 @@ const User = () => {
           </table>
         </div>
       }
+      <Pagination usersperPage={usersPerPage} totalUsers={usersData} setStartIndex={setStartIndex}/>
     </div>
   )
 }

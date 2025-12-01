@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Pagination = () => {
+const Pagination = ({usersperPage,totalUsers,setStartIndex}) => {
   return (
     <div>
-        
+
     </div>
   )
 }
