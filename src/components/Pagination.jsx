@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pagination = ({usersperPage,totalUsers,setStartIndex}) => {
+const Pagination = ({usersperPage,totalUsers,setStartIndex,startIndex}) => {
     // console.log("usersperpage",usersperPage)
     // console.log("totalusers",totalUsers)
     const pages = []
@@ -15,7 +15,7 @@ const Pagination = ({usersperPage,totalUsers,setStartIndex}) => {
   return (
     <div className='flex justify-center items-center gap-5 my-10'>
         {pages.map((page,index)=>{
-            return <button key={index} onClick={()=>setStartIndex(page)} className='size-8 border'>{page}</button>
+            return <button key={index} onClick={()=>setStartIndex(page)} className={`size-8 border ${page === startIndex ?"bg-indigo-500 text-white ":""} `}>{page}</button>
         })}
     </div>
   )
